@@ -4,6 +4,9 @@ public class Main {
         System.out.println("=== Java Data Structures Demos ===");
         ArrayListExample.run();
         LinkedListExample.run();
+        BanditListExample.run();
+        BanditJudgesSolution.run();
+        TrainTaskExample.run();
         QueueExamples.run();
         StackExample.run();
         SetExample.run();

@@ -59,13 +59,31 @@
   - Коли використовувати: якщо важлива логічна ієрархія або шукаєте навчальний приклад; для продуктивних задач краще використовувати збалансовані структури (`TreeMap`, `TreeSet`, AVL/Red-Black).
   - Основні складності (небалансоване BST): insert/search O(h), де h — висота дерева (в найгіршому випадку O(n), в середньому O(log n) для випадкових вставок).
 
+- Bandit / Judge task — файли: `Bandit.java`, `Judge.java`, `BanditListExample.java`, `BanditJudgesSolution.java`
+  - `Bandit` — модель бандита з `id`, ім'ям і назвою групи.
+  - `Judge` — модель судді.
+  - `BanditListExample` — демонструє список бандитів і глибоке копіювання.
+  - `BanditJudgesSolution` — показує, як знайти суддів, які судили всю групу.
+  - Ідея розв'язання: для кожного бандита є `Set<Judge>` з тими, хто його судив. Щоб знайти суддів, які судили всю групу, беремо перетин множин усіх бандитів у цій групі.
+  - Чому `Set`: він прибирає дублікати та дозволяє швидко робити `retainAll(...)`.
+  - Чому `Map<Bandit, Set<Judge>>`: дозволяє напряму зберігати відношення "бандит -> судді".
+
+- Train / Passenger task — файли: `Passenger.java`, `Train.java`, `TrainTaskExample.java`
+  - `Train` містить назву, час початку/кінця руху та колекцію `Passenger`.
+  - `Passenger` містить прізвище пасажира (`name`) та його місце (`place`).
+  - `Train.add(String s, int p)` садить пасажира на потяг або оновлює його місце, якщо прізвище вже є.
+  - `Train.remove(String s)` висаджує пасажира з потяга.
+  - Глибоке копіювання: `Train(Train other)` створює новий потяг і новий список пасажирів, тому зміни копії не впливають на оригінал.
+  - Запит A: знайти пасажирів, які їдуть більш ніж на одному потязі. Для цього будуємо `Map<String, Set<String>>`, де ключ — прізвище, а значення — множина назв потягів.
+  - Запит B: за прізвищем знайти, чи їде пасажир, і якщо так — на якому потязі та на якому місці.
+
 
 Запуск демо
 
 1. Скомпілюйте всі файли у директорію `out`:
 
 ```powershell
-cd C:\JavaProjects\basic_structures\basic_struct
+cd D:\files\JavaProjects\basic_structures\basic_struct
 javac -d out src\*.java
 ```
 
@@ -74,6 +92,11 @@ javac -d out src\*.java
 ```powershell
 java -cp out Main
 ```
+
+Що побачите у виводі:
+- приклад із deep copy для списку бандитів;
+- пошук суддів, які судили кожне угрупування повністю.
+- приклад із потягами та пасажирами, deep copy потягів, а також запити A і B.
 
 Файли-демо
 - `src\ArrayListExample.java`
@@ -85,5 +108,12 @@ java -cp out Main
 - `src\HashExample.java`
 - `src\BinarySearchTree.java`
 - `src\TreeExample.java`
+- `src\Bandit.java`
+- `src\Judge.java`
+- `src\BanditListExample.java`
+- `src\BanditJudgesSolution.java`
+- `src\Passenger.java`
+- `src\Train.java`
+- `src\TrainTaskExample.java`
 - `src\Main.java`
 
